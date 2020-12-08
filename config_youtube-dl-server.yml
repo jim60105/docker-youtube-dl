@@ -1,0 +1,16 @@
+ydl_server:   # youtube-dl-server specific settings
+  port: 8080      # Port youtube-dl-server should listen on
+  host: 0.0.0.0   # IP youtube-dl-server should bind to
+  debug: False    # Enable/Disable debug mode
+  metadata_db_path: '/usr/src/app/ydl_server/.ydl-metadata.db' # Path to metadata DB
+  output_playlist: '/youtube-dl/%(playlist_title)s/%(upload_date)s %(title)s (%(id)s).%(ext)' # Playlist output directory
+  update_poll_delay_min: 1440 # Automatically check for updates every 24h
+
+ydl_options:  # youtube-dl options
+  output: '/youtube-dl/%(upload_date)s %(title)s (%(id)s).%(ext)s' # output directory
+  cache-dir: '/usr/src/app/ydl_server/.cache' # youtube-dl cache directory
+  ignore-errors: True # instruct youtube-dl to skip errors
+  age-limit: 6 # minimal age requirement / parental control setting
+  add-metadata: True
+  cookies: '/usr/src/app/cookies.txt'
+  merge-output-format: 'mp4'
