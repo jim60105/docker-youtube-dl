@@ -1,0 +1,3 @@
+[submodule "live-dl/youtube-dl-server"]
+	path = live-dl/youtube-dl-server
+	url = git@github.com:jim60105/youtube-dl-server.git

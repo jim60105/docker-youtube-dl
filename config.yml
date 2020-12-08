@@ -1,0 +1,75 @@
+config:
+  # Runing mode
+  #
+  # - download: default mode, monitor URL and download when available
+  # - metadata: download JSON metadata only
+  # - notifier: only send notifications
+  mode: download
+  # There's no need to quote or escape your path, examples:
+  #
+  # - ~/Downlaods
+  # - ~/Files/VTuber Videos
+  # - ~/My Videos/Live Recordings
+  #
+  # All examples above should work
+  output: /youtube-dl
+  # same location with youtube-dl web gui
+  interval: 20
+  skip_alias: false
+  skip_check: false
+  skip_convert: false
+  skip_metadata: false
+  skip_email: true
+  skip_slack: true
+  skip_telegram: true
+  run_callback: false
+  address_pool: false
+  one_time: false
+  image_proxy: false
+  timezone: Asia/Tokyo
+  email_provider: ses
+  mailgun:
+    # Find your private API key at https://app.mailgun.com/app/account/security/api_keys
+    api: key-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    domain: mail.example.com
+    receipt: me@example.com
+  ses:
+    access: AKxxxxxxxxxxxxxxxxxx
+    secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    domain: mail.example.com
+    receipt: me@example.com
+  slack:
+    # Create your webhook at https://slack.com/apps/A0F7XDUAZ-incoming-webhooks
+    webhook: https://hooks.slack.com/services/
+  telegram:
+    # Obtian your bot API from @BotFather
+    bot: 000000000:xxxxxxxxx
+    # Get channel ID via:
+    # https://api.telegram.org/bot<API-access-token>/getUpdates?offset=0
+    channel: 0000000000000
+  callback:
+    # `EXECUTABLE "${OUTPUT_PATH}.mp4" "$BASE_DIR/" $VIDEO_ID $FULLTITLE $UPLOADER $UPLOAD_DATE` will be called.
+    executable: /usr/src/app/callback.sh
+  address_pool_file: /dev/null
+
+map:
+  - name: 久遠たま
+    youtube: https://www.youtube.com/channel/UCBC7vYFNQoGPupe5NxPG4Bw
+
+  - name: 伊冬ユナ
+    youtube: https://www.youtube.com/channel/UCYbzeYnRZuw7fZKrgu2bgtw
+
+  - name: 天王メイジ
+    youtube: https://www.youtube.com/channel/UCa6otusExLWYSPmgX25UOHw
+
+  - name: 苺咲べりぃ
+    youtube: https://www.youtube.com/channel/UC7A7bGRVdIwo93nqnA3x-OQ
+
+  - name: HACHI
+    youtube: https://www.youtube.com/channel/UC7XCjKxBEct0uAukpQXNFPw
+
+  - name: 犬山たまき
+    youtube: https://www.youtube.com/channel/UC8NZiqKx6fsDT3AVcMiVFyA
+
+  - name: 戌神ころね
+    youtube: https://www.youtube.com/channel/UChAnqc_AY5_I3Px5dig3X1Q

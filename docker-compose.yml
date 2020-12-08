@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  livedl:
+    # build: ./live-dl
+    # image: live-dl
+    image: jim60105/live-dl
+    restart: always
+    volumes:
+      - ../YoutubeRecordings:/youtube-dl
+      - ./Auto:/Auto
+      - ./cookies.txt:/cookies.txt  # This cannot be achieved with Docker secrets, because the cookies file must be writable.
+      - ./config.yml:/usr/src/app/config.yml:ro
+      # - ./download_again.sh:/usr/src/app/callback.sh:ro  # If necessary, bind the callback script to this location.
+    env_file:
+      - .env
+    environment:
+      - LETSENCRYPT_HOST=${HOST}
+      - VIRTUAL_HOST=${HOST}
+    entrypoint: /usr/src/app/startServer.sh
+    networks:
+      - proxy-tier
+
+  jobber:
+    image: blacklabelops/jobber:docker
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ../YoutubeRecordings:/youtube-dl
+      - ./prune_dir.sh:/prune_dir.sh:ro
+    env_file:
+      - .env
+    environment:
+      - JOB_NAME1=PruneOldFiles
+      - JOB_COMMAND1=/bin/bash /prune_dir.sh /youtube-dl ${DelPercentage}
+      - JOB_TIME1=0 0 1 * * * #Exec per Day at UTC 01:00
+      - JOB_NOTIFY_ERR1=true
+      - JOB_NOTIFY_FAIL1=true
+
+networks:
+  proxy-tier:
+    external: true
+    name: proxy-tier
