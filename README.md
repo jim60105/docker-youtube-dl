@@ -42,6 +42,7 @@ nginx Server (Reverse Proxy) (SSL證書申請、Renew)\
 * Jobber會在每日的01:00 UTC檢查磁碟使用率，並由舊檔案刪起，直到磁碟使用率降到設定值(或直到沒有檔案)
 
 ## 部屬
+> 如果要build docker image，請用`git pull --recurse-submodules`
 * 請參考 `*.env_sample` 建立 `*.env`
     * LETSENCRYPT_EMAIL=你的email
     * HOST=WebUI網址
