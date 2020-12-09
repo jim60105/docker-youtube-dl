@@ -11,10 +11,10 @@ services:
       - ./Monitor:/Monitor:ro
       - ./start.sh:/start.sh:ro
       # This cannot be achieved with Docker secrets, because the cookies file must be writable.
-      - ./cookies.txt:/usr/src/app/cookies.txt  
+      - ./cookies.txt:/usr/src/app/cookies.txt
       - ./config_live-dl.yml:/usr/src/app/config.yml:ro
       # If necessary, bind the callback script to /usr/src/app/callback.sh.
-      # - ./download_again.sh:/usr/src/app/callback.sh:ro  
+      # - ./download_again.sh:/usr/src/app/callback.sh:ro
     entrypoint: bash /start.sh
 
   youtube-dl-server:
