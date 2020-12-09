@@ -1,9 +1,6 @@
-[submodule "live-dl/youtube-dl-server"]
-	path = live-dl/youtube-dl-server
-	url = git@github.com:jim60105/youtube-dl-server.git
 [submodule "live-dl"]
 	path = live-dl
-	url = git@github.com:jim60105/live-dl.git
+	url = https://github.com/jim60105/live-dl.git
 [submodule "youtube-dl-server"]
 	path = youtube-dl-server
-	url = git@github.com:jim60105/youtube-dl-server.git
+	url = https://github.com/jim60105/youtube-dl-server.git
