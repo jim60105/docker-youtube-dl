@@ -1,24 +1,3 @@
-# live-dl on Docker
-若要單次執行而不部屬，可直接docker run
-
-例如
-```bash
-docker run --rm
-    -v D:\YoutubeDownload:/youtube-dl
-    -v D:\YoutubeDownload\cookies.txt:/usr/src/app/cookies.txt
-    jim60105/live-dl https://www.youtube.com/watch?v=GDOQTShjTQs
-```
-
-此格式如下
-```bash
-docker run --rm
-    -v {{影片儲存資料夾}}:/youtube-dl
-    -v {{cookies file，用於登入驗證}}:/usr/src/app/cookies.txt
-    jim60105/live-dl {{Youtube網址}}
-```
-將{{}}填入你的內容，若不需要登入就不要bind上cookies file\
-cookies file之相關說明請見文末
-
 # live-dl Service on Docker + 磁碟滿時自動清理錄影
 > 這是從屬於 [jim60105/docker-ReverseProxy](https://github.com/jim60105/docker-ReverseProxy) 的 live-dl 方案，必須在上述伺服器運行正常後再做
 
@@ -34,25 +13,27 @@ WWW\
 nginx Server (Reverse Proxy) (SSL證書申請、Renew)\
 ├ Jobber (Cron) (定時檢查磁碟使用率，在高於設定之百分比時，自動由舊起刪除錄影)\
 ├ live-dl (直播監控錄影機)\
-└ youtube-dl-server (WebUI)
+└ youtube-dl-server (WebUI下載器)
 
 ## 說明
-* 錄影和下載會儲存在主機的 `../YoutubeRecordings/` 之下
-* 可以在錄影完成後callback bash script
+* 錄影和下載會儲存在主機的 `../YoutubeRecordings/` 之下，可以在 [docker-compose.yml](docker-compose.yml)修改
+* 可以在錄影完成後執行callback bash script
 * Jobber會在每日的01:00 UTC檢查磁碟使用率，並由舊檔案刪起，直到磁碟使用率降到設定值(或直到沒有檔案)
 
 ## 部屬
-> 如果要build docker image，請用`git pull --recurse-submodules`
-* 請參考 `*.env_sample` 建立 `*.env`
-    * LETSENCRYPT_EMAIL=你的email
-    * HOST=WebUI網址
-    * DelPercentage=要執行刪除功能的磁碟使用百分比
-* 請編輯 `config.yml` 在map處建立名稱表，**此表用於自動錄播時的資料夾建立**
+> **本專案有submodule**\
+> 如果想要build docker image，請用`git pull --recurse-submodules`
+ 
+* 請參考 [`.env_sample`](.env_sample) 建立 `.env`
+    * `LETSENCRYPT_EMAIL`=你的email
+    * `HOST`=WebUI網址
+    * `DelPercentage`=要執行刪除功能的磁碟使用百分比
+* 請編輯 [`config_live-dl.yml`](config_live-dl.yml) 在map處建立名稱表，**此表用於自動錄播時的資料夾建立**
     ```yml
     - name: 久遠たま
       youtube: https://www.youtube.com/channel/UCBC7vYFNQoGPupe5NxPG4Bw
     ```
-* 請參考 `Monitor/tama.sh` 建立要自動錄播的頻道，所有Monitor下的檔案都會被執行
+* 請參考 [`Monitor/tama.sh`](Monitor/tama.sh) 建立要自動錄播的頻道，所有Monitor下的檔案都會被執行
 ```sh
 nohup /bin/bash live-dl {{Youtube URL}} &>/youtube-dl/logs/live-dl-{{Channel Name}}.$(date +%d%b%y-%H%M%S).log &
 ```
@@ -71,22 +52,23 @@ youtube-dl支援以cookie的方式登入，可以下載會限影片
 * 瀏覧至Youtube網頁，登入你的帳號
 * 以擴充功能匯出`youtube.com`網域的所有cookie
 * 將匯出之cookie檔案重命名為`cookies.txt`
-* 取代專案根目錄下的cookies.txt檔，或用於docker run時的volume bind
+* 取代專案根目錄下的[cookies.txt](cookies.txt)檔，或用於docker run時的volume bind
 
 ## 錄影完成Callback
-如果需要在下載完成後回呼，請修改docker-compose.yml，將回呼腳本bind至livedl之下的/usr/src/app/callback.sh
-> 本專案提供的 download_again.sh ，能在下載完成後等待一分鐘，再下載第二次\
-> (由於串流中錄影容易有漏秒，所以在「直播結束後至Youtube版權砲前」再下載一次)
+如果需要在下載完成後回呼，請修改[docker-compose.yml](docker-compose.yml)，將回呼腳本bind至livedl之下的/usr/src/app/callback.sh
+> 本專案提供的 [download_again.sh](download_again.sh) ，能在下載完成後等待一分鐘，再下載第二次\
+> 由於串流中錄影容易有漏秒，所以在「直播結束後至Youtube版權砲前」再下載一次
 
 ### callback.sh傳入之參數:
-```
+```bash
 __info "Calling callback function..."
 local cmd=( "$CALLBACK_EXEC" "${OUTPUT_PATH}.mp4" "$BASE_DIR/" "$VIDEO_ID" "$FULLTITLE" "$UPLOADER" "$UPLOAD_DATE" )
 nohup "${cmd[@]}" &>> "$OUTPUT_PATH.log" &
 ```
-- 產出檔案的完整路徑
-- 產出檔案之所在資料夾
-- 影片id
-- 影片標題
-- 影片上傳者
-- 上傳日期
+bash參數
+1. 產出檔案的完整路徑
+1. 產出檔案之所在資料夾
+1. 影片id
+1. 影片標題
+1. 影片上傳者
+1. 上傳日期
