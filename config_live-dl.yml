@@ -22,7 +22,7 @@ config:
   skip_email: true
   skip_slack: true
   skip_telegram: true
-  run_callback: false
+  run_callback: true
   address_pool: false
   one_time: false
   image_proxy: false

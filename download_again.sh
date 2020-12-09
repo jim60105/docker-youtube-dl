@@ -7,4 +7,4 @@ sleep 60
 mkdir -p /youtube-dl/logs
 
 #Change the URL link and the name of the log file.
-nohup /bin/bash live-dl https://www.youtube.com/watch?v=$3 &>/youtube-dl/logs/live-dl-again$4.$(date +%d%b%y-%H%M%S).log &
+nohup /bin/bash live-dl --callback false https://www.youtube.com/watch?v=$3 &>/youtube-dl/logs/live-dl-again$4.$(date +%d%b%y-%H%M%S).log &
