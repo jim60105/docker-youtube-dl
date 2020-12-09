@@ -52,7 +52,7 @@ nginx Server (Reverse Proxy) (SSL證書申請、Renew)\
     - name: 久遠たま
       youtube: https://www.youtube.com/channel/UCBC7vYFNQoGPupe5NxPG4Bw
     ```
-* 請參考 `Auto/tama.sh` 建立要自動錄播的頻道，所有Monitor下的檔案都會被執行
+* 請參考 `Monitor/tama.sh` 建立要自動錄播的頻道，所有Monitor下的檔案都會被執行
 ```sh
 nohup /bin/bash live-dl {{Youtube URL}} &>/youtube-dl/logs/live-dl-{{Channel Name}}.$(date +%d%b%y-%H%M%S).log &
 ```
