@@ -1,10 +1,13 @@
 #!/bin/bash
 
+# Prune before the second download.
+/bin/bash prune_dir.sh /youtube-dl ${DelPercentage}
+
 # Sleep one minute to make sure the live stream is end.
 sleep 60
 
 # Make folder if not exist
 mkdir -p /youtube-dl/logs
 
-#Change the URL link and the name of the log file.
-nohup /bin/bash live-dl --callback false https://www.youtube.com/watch?v=$3 &>/youtube-dl/logs/live-dl-again$4.$(date +%d%b%y-%H%M%S).log &
+# Download again.
+/bin/bash live-dl --callback false https://www.youtube.com/watch?v=$3 &>"/youtube-dl/logs/live-dl-callback-$4.log"
