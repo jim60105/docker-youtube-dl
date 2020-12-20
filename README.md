@@ -72,3 +72,6 @@ bash參數
 1. 影片標題
 1. 影片上傳者
 1. 上傳日期
+
+## LICENSE: AGPL-3.0 License 
+本專案使用AGPL-3.0，遵循自 [sparanoid/live-dl](https://github.com/sparanoid/live-dl)
