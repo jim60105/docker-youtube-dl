@@ -12,8 +12,16 @@ config:
   # - ~/My Videos/Live Recordings
   #
   # All examples above should work
-  output: /youtube-dl
   # same location with youtube-dl web gui
+  output: /youtube-dl
+  #
+  # Filter video titles. Only works with channel URL in stream download mode
+  #
+  # - Can be single string or regex expression. ie. ASMR|
+  # - Can be overrided by passing --filter option
+  filter: ""
+  # Additional youtube-dl args
+  ytdl_args: ""
   interval: 20
   skip_alias: false
   skip_check: false
