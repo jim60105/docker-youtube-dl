@@ -14,3 +14,4 @@ ydl_options:  # youtube-dl options
   add-metadata: True
   cookies: '/usr/src/app/cookies.txt'
   merge-output-format: 'mp4'
+  retries: 30
