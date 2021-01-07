@@ -32,7 +32,7 @@ then
     # we are below the limit. Just
     # delete regular files, ignore directories.
     #
-    find $DIR -type f -print0 | xargs -0 ls -tr | grep 'log$\|json$\|m4a$\|aac$\|flac$\|mp3$\|ogg$\|opus$\|wav$\|mka$\|mkv$\|mpg$\|ogv$\|ts$\|wma$\|wmv$\|webm' | while read FILE
+    find $DIR -type f -print0 | xargs -0 ls -tr | grep 'mp4$\|jpg$\|png$\|log$\|json$\|m4a$\|aac$\|flac$\|mp3$\|ogg$\|opus$\|wav$\|mka$\|mkv$\|mpg$\|ogv$\|ts$\|wma$\|wmv$\|webm' | while read FILE
     do
         if rm -f "$FILE"
         then
