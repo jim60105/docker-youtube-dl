@@ -23,10 +23,6 @@ config:
   # Default: false
   skip_check: false
 
-  # Skip converting TS file to MP4. This can save save your time on lowend machines
-  # Default: false
-  skip_convert: false
-
   # Skip embedding metadata in videos.
   # Default: false
   skip_metadata: false
