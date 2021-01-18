@@ -12,29 +12,63 @@ config:
   # - ~/My Videos/Live Recordings
   #
   # All examples above should work
-  # same location with youtube-dl web gui
+  # >> Use same location with youtube-dl web gui
   output: /youtube-dl
-  #
+  
+  # Loop interval, unit: second
+  # Default: 10.
+  interval: 20
+
+  # Skip dependency check
+  # Default: false
+  skip_check: false
+
+  # Skip converting TS file to MP4. This can save save your time on lowend machines
+  # Default: false
+  skip_convert: false
+
+  # Skip embedding metadata in videos.
+  # Default: false
+  skip_metadata: false
+
+  # Skip sending emails when live starts/ends
+  # Default: false
+  skip_email: true
+
+  # Skip sending Slack notifications when live starts
+  # Default: false
+  skip_slack: true
+
+  # Skip sending notifications to specific Telegram channels (if available) when live starts
+  # Default: false
+  skip_telegram: true
+
+  # Run script only once without monitoring
+  # Default: false
+  one_time: false
+
+  run_callback: true
+  address_pool: false
+  image_proxy: false
+  
+  # Set timezone for notifications
+  # Default: Asia/Tokyo
+  timezone: Asia/Tokyo
+
   # Filter video titles. Only works with channel URL in stream download mode
   #
   # - Can be single string or regex expression. ie. ASMR|
   # - Can be overrided by passing --filter option
+  #
+  # Default: ""
   filter: ""
-  # Additional youtube-dl args
+
+  # Passing additional options to youtube-dl. options should be quoted
+  # Default: ""
   ytdl_args: ""
-  interval: 20
-  skip_alias: false
-  skip_check: false
-  skip_convert: false
-  skip_metadata: false
-  skip_email: true
-  skip_slack: true
-  skip_telegram: true
-  run_callback: true
-  address_pool: false
-  one_time: false
-  image_proxy: false
-  timezone: Asia/Tokyo
+
+  # Choose your email provider. I recommend AWS SES
+  # Default: ses
   email_provider: ses
   mailgun:
     # Find your private API key at https://app.mailgun.com/app/account/security/api_keys
@@ -60,6 +94,8 @@ config:
     executable: /usr/src/app/callback.sh
   address_pool_file: /dev/null
 
+# Define your own channel map.
+# Channel map can provide channel specific options
 map:
   - name: 久遠たま
     youtube: https://www.youtube.com/channel/UCBC7vYFNQoGPupe5NxPG4Bw
@@ -81,3 +117,95 @@ map:
 
   - name: 戌神ころね
     youtube: https://www.youtube.com/channel/UChAnqc_AY5_I3Px5dig3X1Q
+
+  - name: 湊あくあ
+    mode: monitor
+    twitter: minatoaqua
+    youtube: https://www.youtube.com/channel/UC1opHUrw8rvnsadT-iGp7Cg
+    bilibili: https://live.bilibili.com/14917277
+    telegram: -1001452928607
+    tiktok: minatoaqua
+
+  - name: 神楽めあ
+    mode: monitor
+    twitter: kaguramea_vov
+    youtube: https://www.youtube.com/channel/UCWCc8tO-uUl_7SJXIKJACMw
+    bilibili: https://live.bilibili.com/12235923
+    twitcasting: kaguramea_vov
+    openrec: KaguraMea
+    telegram: -1001453708263
+
+  - name: めあちゃんねるっ!
+    youtube: https://www.youtube.com/channel/UCu5eCcfs67GkeCFbhsMrEjA
+    telegram: -1001453708263
+
+  - name: 水科葵
+    youtube: https://www.youtube.com/channel/UCVFpIqGoTmFaoMmyFPRYrKA
+    telegram: -1001427508895
+
+  - name: 潤羽るしあ
+    mode: monitor
+    youtube: https://www.youtube.com/channel/UCl_gCybOJRIgOXw6Qb4qJzQ
+    telegram: -1001448291041
+
+  - name: 白百合リリィ
+    mode: monitor
+    youtube: https://www.youtube.com/channel/UCl-3q6t6zdZwgIsFZELb7Zg
+    telegram: -1001437419680
+
+  - name: 百鬼あやめ
+    youtube: https://www.youtube.com/channel/UC7fk0CB07ly8oSl0aqKkqFg
+    telegram: -1001437419680
+
+  - name: 白上フブキ
+    mode: monitor
+    youtube: https://www.youtube.com/channel/UCdn5BQ06XqgXoAxIhbqw5Rg
+    telegram: -1001396390139
+
+  - name: 有栖マナ
+    youtube: https://www.youtube.com/channel/UCIaC5td9nGG6JeKllWLwFLA
+    bilibili: https://space.bilibili.com/3149619
+    twitch: https://www.twitch.tv/alicemana_v
+
+  - name: 音俣るか
+    youtube: https://www.youtube.com/channel/UCNSr_pgMH3in2d0RGtcdEEg
+    bilibili: https://space.bilibili.com/406548031
+
+  - name: 物述有栖
+    youtube: https://www.youtube.com/channel/UCt0clH12Xk1-Ej5PXKGfdPA
+    bilibili: https://space.bilibili.com/434565011
+
+  - name: 宗谷いちか
+    youtube: https://www.youtube.com/channel/UC2kyQhzGOB-JPgcQX9OMgEw
+
+  - name: 癒月ちょこ
+    youtube: https://www.youtube.com/channel/UC1suqwovbL1kzsoaZgFZLKg
+
+  - name: 乙女おと
+    youtube: https://www.youtube.com/channel/UCvEX2UICvFAa_T6pqizC20g
+
+  - name: 天宮こころ
+    youtube: https://www.youtube.com/channel/UCkIimWZ9gBJRamKF0rmPU8w
+
+  - name: 夜空メルチャンネル
+    youtube: https://www.youtube.com/channel/UCD8HOxPs4Xvsm8H0ZxXGiBw
+
+  - name: かぐらなな
+    youtube: https://www.youtube.com/channel/UCbfv8uuUXt3RSJGEwxny5Rw
+
+  - name: 赤井はあと
+    youtube: https://www.youtube.com/channel/UC1CfXB_kRs3C-zaeTG3oGyg
+    telegram: -1001437419680
+
+  - name: 笹木咲
+    youtube: https://www.youtube.com/channel/UCoztvTULBYd3WmStqYeoHcA
+    telegram: -1001437419680
+
+  - name: 不知火フレア
+    youtube: https://www.youtube.com/channel/UCvInZx9h3jC2JzsIzoOebWg
+
+  - name: 樋口楓
+    youtube: https://www.youtube.com/channel/UCsg-YqdqQ-KFF0LNk23BY4A
+
+  - name: 美波七海
+    youtube: https://www.youtube.com/channel/UCrwJvtphcyux30pAgoX68jA
