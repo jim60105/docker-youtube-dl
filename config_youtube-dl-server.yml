@@ -12,6 +12,6 @@ ydl_options:  # youtube-dl options
   ignore-errors: True # instruct youtube-dl to skip errors
   age-limit: 6 # minimal age requirement / parental control setting
   add-metadata: True
-  cookies: '/usr/src/app/cookies.txt'
+  cookies: '/cookies.txt'
   merge-output-format: 'mp4'
   retries: 30

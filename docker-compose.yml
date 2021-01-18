@@ -27,8 +27,8 @@ services:
     restart: always
     volumes:
       - ../YoutubeRecordings:/youtube-dl
-      - ./cookies.txt:/usr/src/app/cookies.txt
-      - ./config_youtube-dl-server.yml:/usr/src/app/config.yml:ro
+      - ./config_youtube-dl-server.yml:/app_config/config.yml:ro
+      - ./cookies.txt:/cookies.txt
     env_file:
       - .env
     environment:
