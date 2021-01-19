@@ -10,4 +10,4 @@ sleep 60
 mkdir -p /youtube-dl/logs
 
 # Download again.
-/bin/bash live-dl --callback false https://www.youtube.com/watch?v=$3 &>"/youtube-dl/logs/live-dl-callback-$4.log"
+/bin/bash live-dl --callback false https://www.youtube.com/watch?v=$3 &>"/youtube-dl/logs/live-dl-callback-$3.log"
