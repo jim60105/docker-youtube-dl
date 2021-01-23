@@ -19,11 +19,6 @@ services:
     env_file:
       - .env
     entrypoint: bash /start.sh
-    # Logging to LogServer
-    logging:
-      driver: "gelf"
-      options:
-        gelf-address: "udp://127.0.0.1:12201"
 
   youtube-dl-server:
     image: jim60105/youtube-dl-server
@@ -41,11 +36,6 @@ services:
       - VIRTUAL_HOST=${HOST}
     networks:
       - proxy-tier
-    # Logging to LogServer
-    logging:
-      driver: "gelf"
-      options:
-        gelf-address: "udp://127.0.0.1:12201"
 
   jobber:
     image: blacklabelops/jobber:docker
@@ -62,11 +52,6 @@ services:
       - JOB_TIME1=0 0 1 * * * #Exec per Day at UTC 01:00
       - JOB_NOTIFY_ERR1=true
       - JOB_NOTIFY_FAIL1=true
-    # Logging to LogServer
-    logging:
-      driver: "gelf"
-      options:
-        gelf-address: "udp://127.0.0.1:12201"
 
 networks:
   proxy-tier:

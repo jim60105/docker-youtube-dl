@@ -1,0 +1,22 @@
+# Override logging settings to LogServer
+version: '3.7'
+
+services:
+  livedl:
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+
+  youtube-dl-server:
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+
+  jobber:
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
+
