@@ -5,7 +5,7 @@ services:
     image: jim60105/live-dl
     # build: ./live-dl
     # image: live-dl
-    restart: always
+    restart: unless-stopped
     volumes:
       - ../YoutubeRecordings:/youtube-dl
       - ./Monitor:/Monitor:ro
@@ -19,12 +19,17 @@ services:
     env_file:
       - .env
     entrypoint: bash /start.sh
+    # Logging to LogServer
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
 
   youtube-dl-server:
     image: jim60105/youtube-dl-server
     # build: ./youtube-dl-server
     # image: youtube-dl-server
-    restart: always
+    restart: unless-stopped
     volumes:
       - ../YoutubeRecordings:/youtube-dl
       - ./config_youtube-dl-server.yml:/app_config/config.yml:ro
@@ -36,10 +41,15 @@ services:
       - VIRTUAL_HOST=${HOST}
     networks:
       - proxy-tier
+    # Logging to LogServer
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
 
   jobber:
     image: blacklabelops/jobber:docker
-    restart: always
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ../YoutubeRecordings:/youtube-dl
@@ -52,6 +62,11 @@ services:
       - JOB_TIME1=0 0 1 * * * #Exec per Day at UTC 01:00
       - JOB_NOTIFY_ERR1=true
       - JOB_NOTIFY_FAIL1=true
+    # Logging to LogServer
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://127.0.0.1:12201"
 
 networks:
   proxy-tier:
