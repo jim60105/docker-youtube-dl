@@ -3,20 +3,26 @@ version: '3.7'
 
 services:
   livedl:
+    env_file:
+      - .env
     logging:
       driver: "gelf"
       options:
-        gelf-address: "udp://127.0.0.1:12201"
+        gelf-address: "udp://${LOGSERVER}"
 
   youtube-dl-server:
+    env_file:
+      - .env
     logging:
       driver: "gelf"
       options:
-        gelf-address: "udp://127.0.0.1:12201"
+        gelf-address: "udp://${LOGSERVER}"
 
   jobber:
+    env_file:
+      - .env
     logging:
       driver: "gelf"
       options:
-        gelf-address: "udp://127.0.0.1:12201"
+        gelf-address: "udp://${LOGSERVER}"
 
