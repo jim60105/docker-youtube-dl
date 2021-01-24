@@ -6,8 +6,14 @@
 # Sleep one minute to make sure the live stream is end.
 sleep 60
 
-# Make folder if not exist
-mkdir -p /youtube-dl/logs
-
 # Download again.
-/bin/bash live-dl --callback "/dev/null" https://www.youtube.com/watch?v=$3 &>"/youtube-dl/logs/live-dl-callback-$3.log"
+#
+# File logging:
+#####
+# mkdir -p /youtube-dl/logs
+# /bin/bash live-dl --callback "/dev/null" https://www.youtube.com/watch?v=$3 &>"/youtube-dl/logs/live-dl-callback-$3.log"
+
+#
+# STDOUT logging (with log tag):
+#####
+/bin/bash live-dl --callback "/dev/null" https://www.youtube.com/watch?v=$3 --log-tag Callback &
