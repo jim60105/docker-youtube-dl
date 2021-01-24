@@ -46,6 +46,9 @@ config:
   run_callback: true
   address_pool: false
   image_proxy: false
+  log:
+    tag: ""
+    color: false
   
   # Set timezone for notifications
   # Default: Asia/Tokyo
