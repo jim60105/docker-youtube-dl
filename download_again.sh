@@ -11,12 +11,12 @@ sleep 60
 #
 # File logging:
 #####
-# mkdir -p /youtube-dl/logs
-# /bin/bash live-dl --callback "/dev/null" https://www.youtube.com/watch?v=$3 &>"/youtube-dl/logs/live-dl-callback-$3.log"
+mkdir -p /youtube-dl/logs
+/bin/bash live-dl --callback "/dev/null" https://www.youtube.com/watch?v=$3 --log-tag Callback &>"/youtube-dl/logs/live-dl-callback-$3.log"
 
 #
 # Docker logs logging (with log tag):
 #####
-/bin/bash live-dl --callback "/dev/null" https://www.youtube.com/watch?v=$3 --log-tag Callback > /proc/1/fd/1
+# /bin/bash live-dl --callback "/dev/null" https://www.youtube.com/watch?v=$3 --log-tag Callback > /proc/1/fd/1
 
 echo "[$(date +"%D %T")] [Callback] [Info] Callback finished." > /proc/1/fd/1

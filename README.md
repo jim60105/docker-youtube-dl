@@ -28,6 +28,7 @@ nginx Server (Reverse Proxy) (SSL證書申請、Renew)\
     * `LETSENCRYPT_EMAIL`=你的email
     * `HOST`=WebUI網址
     * `DelPercentage`=要執行刪除功能的磁碟使用百分比
+    * `LOGSERVER`=GELF log server位置，詳細請參照後文
 * 請編輯 [`config_live-dl.yml`](config_live-dl.yml) 在map處建立名稱表，**此表用於自動錄播時的資料夾建立**
     ```yml
     - name: 久遠たま
@@ -57,7 +58,7 @@ youtube-dl支援以cookie的方式登入，可以下載會限影片
 ## 錄影完成Callback
 如果需要在下載完成後回呼，請修改[docker-compose.yml](docker-compose.yml)，將回呼腳本bind至livedl之下的/usr/src/app/callback.sh
 > 本專案提供的 [download_again.sh](download_again.sh) ，能在下載完成後等待一分鐘，再下載第二次\
-> 由於串流中錄影容易有漏秒，所以在「直播結束後至Youtube版權砲前」再下載一次
+> 由於串流中錄影容易有漏秒，這功能用於「直播結束後至Youtube版權砲前」再下載一次
 
 ### callback.sh傳入之參數:
 ```bash
@@ -72,6 +73,14 @@ bash參數
 1. 影片標題
 1. 影片上傳者
 1. 上傳日期
+
+## Logging相關設定
+本專案logging經過調整，可搭配[Seq Log Server](https://datalust.co/seq)使用 (或是任何支援GELF http post的log server)\
+* 參考這個repo部屬Seq: https://github.com/jim60105/docker-Seq
+* .env正確設置LOGSERVER路徑，格式為`IP:埠號`
+* Monitor/*.sh註解掉File logging，改用「STDOUT logging (with log tag)」方式呼叫
+* download_again.sh註解掉File logging，改用「Docker logs logging (with log tag)」方式呼叫
+* 啟動指令改用`docker-compose up -f docker-compose.yml -f docker-compose.log-server.yml -d`，用上overwrite docker-compose file
 
 ## LICENSE: AGPL-3.0 License 
 本專案使用AGPL-3.0，遵循自 [sparanoid/live-dl](https://github.com/sparanoid/live-dl)
