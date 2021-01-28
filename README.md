@@ -1,10 +1,11 @@
-# live-dl Service on Docker + 磁碟滿時自動清理錄影
-> 這是從屬於 [jim60105/docker-ReverseProxy](https://github.com/jim60105/docker-ReverseProxy) 的 live-dl 方案，必須在上述伺服器運行正常後再做
+# youtube-dl Services on docker & Auto clean up
+> 本專案從屬於 [jim60105/docker-ReverseProxy](https://github.com/jim60105/docker-ReverseProxy)\
+> 本專案logging經過調整，可搭配[jim60105/docker-Seq](https://github.com/jim60105/docker-Seq)使用
 
 **請參考 [琳的備忘手札 Youtube直播錄影伺服器建置](https://blog.maki0419.com/2020/11/docker-youtube-dl-auto-recording-live-dl.html)**
 
-本文希望建置起能永久自動運作的Youtube直播備份機\
-此專案目標定位為「錄影備份」，在發生直播主事後砍檔/砍歌時，我才會到伺服器尋找備份\
+本專案希望建置起能永久自動運作的Youtube直播備份機\
+此專案目標定位為「錄影備份」，在發生直播主事後砍檔時，我才會到伺服器尋找備份\
 是故，本專案不著重在錄影後的檔案處理，而是在磁碟滿時做自動刪檔
 
 ## 架構
@@ -80,7 +81,8 @@ bash參數
 * .env正確設置LOGSERVER路徑，格式為`IP:埠號`
 * Monitor/*.sh註解掉File logging，改用「STDOUT logging (with log tag)」方式呼叫
 * download_again.sh註解掉File logging，改用「Docker logs logging (with log tag)」方式呼叫
-* 啟動指令改用`docker-compose -f docker-compose.yml -f docker-compose.log-server.yml up -d`，用上overwrite docker-compose file
+* 啟動指令改用`docker-compose -f docker-compose.yml -f docker-compose.log-server.yml up -d`\
+或是將`docker-compose.log-server.yml`重命名為`docker-compose.override.yml`，使`docker-compose up -d`可以自動應用override檔
 
 ## LICENSE: AGPL-3.0 License 
 本專案使用AGPL-3.0，遵循自 [sparanoid/live-dl](https://github.com/sparanoid/live-dl)
