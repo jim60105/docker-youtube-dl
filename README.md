@@ -80,7 +80,7 @@ bash參數
 * .env正確設置LOGSERVER路徑，格式為`IP:埠號`
 * Monitor/*.sh註解掉File logging，改用「STDOUT logging (with log tag)」方式呼叫
 * download_again.sh註解掉File logging，改用「Docker logs logging (with log tag)」方式呼叫
-* 啟動指令改用`docker-compose up -f docker-compose.yml -f docker-compose.log-server.yml -d`，用上overwrite docker-compose file
+* 啟動指令改用`docker-compose -f docker-compose.yml -f docker-compose.log-server.yml up -d`，用上overwrite docker-compose file
 
 ## LICENSE: AGPL-3.0 License 
 本專案使用AGPL-3.0，遵循自 [sparanoid/live-dl](https://github.com/sparanoid/live-dl)
