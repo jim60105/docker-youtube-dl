@@ -21,8 +21,11 @@ services:
     entrypoint: bash /start.sh
 
   youtube-dl-server:
-    image: jim60105/youtube-dl-server
-    # build: ./youtube-dl-server
+    image: jim60105/youtube-dl-server:latest_atomicparsley
+    # build:
+    #   context: ./youtube-dl-server
+    #   args: 
+    #     - ATOMICPARSLEY=1
     # image: youtube-dl-server
     restart: unless-stopped
     volumes:
