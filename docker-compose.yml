@@ -55,6 +55,11 @@ services:
       - JOB_TIME1=0 0 1 * * * #Exec per Day at UTC 01:00
       - JOB_NOTIFY_ERR1=true
       - JOB_NOTIFY_FAIL1=true
+      - JOB_NAME2=backup-dl
+      - JOB_COMMAND2=docker run --rm --env CHANNELS_IN_ARRAY --env AZURE_STORAGE_CONNECTION_STRING_VTUBER --env Max_Download jim60105/backup-dl
+      - JOB_TIME2=0 0 1 * * * #Exec per Day at UTC 01:00
+      - JOB_NOTIFY_ERR2=true
+      - JOB_NOTIFY_FAIL2=true
 
 networks:
   proxy-tier:

@@ -4,3 +4,6 @@
 [submodule "youtube-dl-server"]
 	path = youtube-dl-server
 	url = https://github.com/jim60105/youtube-dl-server.git
+[submodule "backup-dl"]
+	path = backup-dl
+	url = https://github.com/jim60105/backup-dl.git
