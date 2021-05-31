@@ -88,6 +88,9 @@ config:
     # Get channel ID via:
     # https://api.telegram.org/bot<API-access-token>/getUpdates?offset=0
     channel: 0000000000000
+  discord:
+    # Create your webhook at https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+    webhook: https://discord.com/api/webhooks/
   callback:
     # `EXECUTABLE "${OUTPUT_PATH}.mp4" "$BASE_DIR/" $VIDEO_ID $FULLTITLE $UPLOADER $UPLOAD_DATE` will be called.
     executable: /usr/src/app/callback.sh
@@ -98,6 +101,7 @@ config:
 map:
   - name: 久遠たま
     youtube: https://www.youtube.com/channel/UCBC7vYFNQoGPupe5NxPG4Bw
+#   discord: https://discord.com/api/webhooks/
 
   - name: 伊冬ユナ
     youtube: https://www.youtube.com/channel/UCYbzeYnRZuw7fZKrgu2bgtw
