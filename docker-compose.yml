@@ -56,10 +56,18 @@ services:
       - JOB_NOTIFY_ERR1=true
       - JOB_NOTIFY_FAIL1=true
       # - JOB_NAME2=backup-dl
-      # - JOB_COMMAND2=docker run --rm --env CHANNELS_IN_ARRAY --env AZURE_STORAGE_CONNECTION_STRING_VTUBER --env Max_Download jim60105/backup-dl
-      # - JOB_TIME2=0 0 1 * * * #Exec per Day at UTC 01:00
+      # - JOB_COMMAND2=cd /docker-live-dl && docker-compose restart backupdl
+      # - JOB_TIME2=0 0 2 * * * #Exec per Day at UTC 02:00
       # - JOB_NOTIFY_ERR2=true
       # - JOB_NOTIFY_FAIL2=true
+
+  # backupdl:
+  #   image: jim60105/backup-dl
+  #   # build: ./backup-dl
+  #   # image: backup-dl
+  #   restart: 'no'
+  #   env_file:
+  #     - .env
 
 networks:
   proxy-tier:

@@ -25,7 +25,11 @@ services:
       driver: "gelf"
       options:
         gelf-address: "udp://${LOGSERVER}"
-    environment: 
-      - JOB_COMMAND2=docker run --rm --env CHANNELS_IN_ARRAY --env AZURE_STORAGE_CONNECTION_STRING_VTUBER --env Max_Download --log-driver gelf --log-opt gelf-address=udp://${LOGSERVER} jim60105/backup-dl
 
-
+  # backupdl:
+  #   env_file:
+  #     - .env
+  #   logging:
+  #     driver: "gelf"
+  #     options:
+  #       gelf-address: "udp://${LOGSERVER}"
