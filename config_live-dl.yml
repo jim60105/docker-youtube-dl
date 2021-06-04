@@ -39,6 +39,10 @@ config:
   # Default: false
   skip_telegram: true
 
+  # Skip sending notifications to Discord when live starts
+  # Default: false
+  skip_discord: true
+
   # Run script only once without monitoring
   # Default: false
   one_time: false
