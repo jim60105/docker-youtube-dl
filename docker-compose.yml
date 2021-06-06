@@ -47,6 +47,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ../YoutubeRecordings:/youtube-dl
       - ./prune_dir.sh:/prune_dir.sh:ro
+      - ./:/docker-live-dl:ro
     env_file:
       - .env
     environment:
