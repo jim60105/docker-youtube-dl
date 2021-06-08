@@ -67,6 +67,8 @@ services:
   #   # build: ./backup-dl
   #   # image: backup-dl
   #   restart: 'no'
+  #   volumes:
+  #     - ./cookies.txt:/app/cookies.txt
   #   env_file:
   #     - .env
 
