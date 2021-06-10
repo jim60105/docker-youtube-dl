@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   livedl:
-    image: jim60105/live-dl
+    image: ghcr.io/jim60105/live-dl
     # build: ./live-dl
     # image: live-dl
     restart: unless-stopped
@@ -21,7 +21,7 @@ services:
     entrypoint: bash /start.sh
 
   youtube-dl-server:
-    image: jim60105/youtube-dl-server:latest_atomicparsley
+    image: ghcr.io/jim60105/youtube-dl-server:latest_atomicparsley
     # build:
     #   context: ./youtube-dl-server
     #   args: 
@@ -66,7 +66,7 @@ services:
       # - JOB_NOTIFY_FAIL2=true
 
   # backupdl:
-  #   image: jim60105/backup-dl
+  #   image: ghcr.io/jim60105/backup-dl
   #   # build: ./backup-dl
   #   # image: backup-dl
   #   restart: 'no'
