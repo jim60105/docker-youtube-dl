@@ -50,7 +50,7 @@ services:
       #- //var/run/docker.sock://var/run/docker.sock:ro
       - ../YoutubeRecordings:/youtube-dl
       - ./prune_dir.sh:/prune_dir.sh:ro
-      - ./:/docker-live-dl:ro
+      - ./:/docker-youtube-dl:ro
     env_file:
       - .env
     environment:
@@ -60,7 +60,7 @@ services:
       - JOB_NOTIFY_ERR1=true
       - JOB_NOTIFY_FAIL1=true
       # - JOB_NAME2=backup-dl
-      # - JOB_COMMAND2=cd /docker-live-dl && docker-compose start backupdl
+      # - JOB_COMMAND2=cd /docker-youtube-dl && docker-compose start backupdl
       # - JOB_TIME2=0 0 2 * * * #Exec per Day at UTC 02:00
       # - JOB_NOTIFY_ERR2=true
       # - JOB_NOTIFY_FAIL2=true
