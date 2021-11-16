@@ -5,7 +5,7 @@ services:
     image: ghcr.io/jim60105/live-dl
     # build: ./live-dl
     # image: live-dl
-    restart: unless-stopped
+    restart: always
     volumes:
       - ../YoutubeRecordings:/youtube-dl
       - ./Monitor:/Monitor:ro
@@ -21,13 +21,13 @@ services:
     entrypoint: bash /start.sh
 
   youtube-dl-server:
-    image: ghcr.io/jim60105/youtube-dl-server:latest_atomicparsley
+    image: ghcr.io/jim60105/youtube-dl-server:yt-dlp_atomicparsley
     # build:
     #   context: ./youtube-dl-server
     #   args: 
     #     - ATOMICPARSLEY=1
     # image: youtube-dl-server
-    restart: unless-stopped
+    restart: always
     volumes:
       - ../YoutubeRecordings:/youtube-dl
       - ./config_youtube-dl-server.yml:/app_config/config.yml:ro
@@ -42,12 +42,9 @@ services:
 
   jobber:
     image: blacklabelops/jobber:docker
-    restart: unless-stopped
+    restart: always
     volumes:
-      ## For Linux
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      ## For Windows
-      #- //var/run/docker.sock://var/run/docker.sock:ro
       - ../YoutubeRecordings:/youtube-dl
       - ./prune_dir.sh:/prune_dir.sh:ro
       - ./:/docker-youtube-dl:ro
