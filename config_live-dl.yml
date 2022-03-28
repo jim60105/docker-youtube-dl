@@ -19,9 +19,9 @@ config:
   # Default: 10.
   interval: 20
 
-  # Skip dependency check
-  # Default: false
-  skip_check: false
+  # Custom User-Agent for cURL requests
+  # Default: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36
+  user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36
 
   # Skip embedding metadata in videos.
   # Default: false
@@ -49,7 +49,6 @@ config:
 
   run_callback: true
   address_pool: false
-  image_proxy: false
   log:
     tag: ""
     color: false
@@ -95,6 +94,7 @@ config:
   discord:
     # Create your webhook at https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
     webhook: https://discord.com/api/webhooks/
+    text: ""
   callback:
     # `EXECUTABLE "${OUTPUT_PATH}.mp4" "$BASE_DIR/" $VIDEO_ID $FULLTITLE $UPLOADER $UPLOAD_DATE` will be called.
     executable: /usr/src/app/callback.sh
